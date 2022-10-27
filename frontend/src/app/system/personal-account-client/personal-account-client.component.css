@@ -1,0 +1,325 @@
+#personal-account__client {
+  background-image: url("../../../assets/pictures/modal/Background2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 1080px;
+  width: 100vw;
+  position: relative;
+}
+
+.button__exit {
+  position: absolute;
+  z-index: 1001;
+  margin-left: 1350px;
+  margin-top: 150px;
+  text-decoration: none;
+  color: #F6E22B;
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.client__notes {
+  margin-top: 426px;
+  width: 635px;
+}
+
+.client__notes h1 {
+  color: var(--accent);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.rectangle__client {
+  width: 632px;
+  height: 365px;
+  background: rgba(43, 43, 43, 0.37);
+  backdrop-filter: blur(9px);
+  border-radius: 25px;
+  position: relative;
+}
+
+.review-tab {
+  margin-top: 5px;
+  margin-left: 25px;
+}
+
+.review-tab h3 {
+  color:var(--accent);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.review-scroll {
+  height: 320px;
+  width: 98%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.review-scroll::-webkit-scrollbar {
+  width: 13px;
+  background-color: #f6e22b00;
+}
+
+.review-scroll::-webkit-scrollbar-thumb {
+  background-color: #f6e22b;
+  border-radius: 24px;
+}
+
+.review-list {
+  margin-left: 5px;
+}
+
+.order-date {
+  background-color: white;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: var(--dark);
+  margin-top: 5px;
+  padding-top: 3px;
+  padding-left: 20px;
+  text-align: left;
+  border-radius: 5px;
+  border: 0;
+  width: 120%;
+  height: 45px;
+}
+
+.order-service {
+  background-color: white;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: var(--dark);
+  margin-top: 5px;
+  padding-top: 3px;
+  padding-left: 20px;
+  text-align: left;
+  border-radius: 5px;
+  border: 0;
+  width: 120%;
+  height: 45px;
+}
+
+.order-price {
+  background-color: white;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: var(--dark);
+  margin-top: 5px;
+  padding-top: 3px;
+  padding-left: 20px;
+  text-align: left;
+  border-radius: 5px;
+  border: 0;
+  width: 90%;
+  height: 45px;
+}
+
+.button__order-review {
+  background-color:#F6E22B;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: var(--dark);
+  margin-top: 5px;
+  text-align: center;
+  border-radius: 5px;
+  border: 0;
+  width: 90%;
+  height: 45px;
+}
+
+.order-review-work {
+  background-color: var(--work);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: var(--dark);
+  margin-top: 5px;
+  text-align: center;
+  border-radius: 5px;
+  border: 0;
+  width: 90%;
+  height: 45px;
+}
+
+.order-review-complete {
+  background-color: var(--complete);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: var(--dark);
+  margin-top: 5px;
+  text-align: center;
+  border-radius: 5px;
+  border: 0;
+  width: 90%;
+  height: 45px;
+}
+
+.button__review {
+  width: 225px;
+  height: 47px;
+  background: var(--accent);
+  box-shadow: 0 4px 25px var(--accent);
+  border-radius: 44px;
+  font-weight: 700;
+  font-size: 23px;
+  color: var(--dark);
+  margin: 172px 41px;
+  border: 0;
+}
+
+.view__process {
+  margin-top: 426px;
+  float: right;
+}
+
+.view__process h1 {
+  color: var(--accent);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.video iframe {
+  border-radius: 25px;
+}
+
+.modal-body {
+  padding: 0;
+  margin-left: 100px;
+  margin-right: 100px;
+  position: relative;
+}
+
+#background__review {
+  background-image: url("../../../assets/pictures/modal/Background2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 838px;
+  height: 519px;
+  background-color:rgba(0,0,0,.9);
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 4px 139px var(--accent);
+  border: 0;
+}
+
+.form-group h5 {
+  font-weight: 400;
+  font-size: 14px;
+  margin-top: 35px;
+}
+
+.form-group textarea {
+  width: 100%;
+  height: 100px;
+  border-radius: 5px;
+}
+
+.modal-title {
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  margin-top: 70px;
+  font-size: 41px;
+  color: var(--accent);
+}
+
+.modal  {
+  background:rgba(0,0,0,.4);
+  backdrop-filter: blur(7px);
+}
+
+#button__save {
+  float: right;
+  width: 150px;
+  height: 47px;
+  background: var(--accent);
+  box-shadow: 0 4px 25px var(--accent);
+  border-radius: 44px;
+  color: var(--dark);
+  font-weight: 700;
+  font-size: 20px;
+  border: 0;
+  margin-top: 10px;
+}
+
+.rating-area {
+  overflow: hidden;
+  width: 265px;
+}
+.rating-area:not(:checked) > input {
+  display: none;
+}
+.rating-area:not(:checked) > label {
+  float: right;
+  width: 49px;
+  padding: 0;
+  cursor: pointer;
+  font-size: 49px;
+  line-height: 49px;
+  color: #C4C4C4;
+  text-shadow: 1px 1px #bbb;
+}
+.rating-area:not(:checked) > label:before {
+  content: '★';
+ margin-left: -20px;
+}
+.rating-area > input:checked ~ label {
+  color: var(--accent);
+  text-shadow: 1px 1px #c60;
+}
+.rating-area:not(:checked) > label:hover,
+.rating-area:not(:checked) > label:hover ~ label {
+  color: var(--accent);
+}
+.rating-area > input:checked + label:hover,
+.rating-area > input:checked + label:hover ~ label,
+.rating-area > input:checked ~ label:hover,
+.rating-area > input:checked ~ label:hover ~ label,
+.rating-area > label:hover ~ input:checked ~ label {
+  color: var(--accent);
+  text-shadow: 1px 1px goldenrod;
+}
+.rate-area > label:active {
+  position: relative;
+}
+
+.title__review img {
+  float: left;
+  width: 66px;
+  height: 66px;
+  margin-top: 10px;
+}
+
+.title__review h3 {
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 30px;
+  text-transform: uppercase;
+}
+
+.rectangle__address {
+  width: auto;
+  height: 26px;
+  background: var(--accent);
+  border-radius: 28px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--dark);
+  border: 0;
+}
+
+.text__review {
+  margin-left: 14px;
+  margin-top: 10px;
+  float: right;
+}

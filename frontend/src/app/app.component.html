@@ -1,0 +1,84 @@
+<app-header></app-header>
+
+<router-outlet></router-outlet>
+
+<!-- FORM NOTE -->
+<div class="modal__window">
+  <div class="modal fade" id="windowNote" tabindex="-1" aria-labelledby="windowNote" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" id="note">
+      <div class="modal-content" id="background__note">
+        <h5 class="modal-title">ON-line <span>запись</span></h5>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <form [formGroup]="formRecord">
+              <div class="row">
+                <div class="col-md-6" id="modal__note">
+                  <div class="form-group col-7" *ngIf="!checkLogin()">
+                    <label>Имя</label>
+                    <input type="text" class="input__modal" formControlName="name"/>
+                  </div>
+                  <div class="form-group col-7" *ngIf="!checkLogin()">
+                    <label>Телефон</label>
+                    <input type="tel" prefix="+7" mask=" (000) 000-0000" formControlName="phone" class="input__modal"/>
+                  </div>
+                  <div class="form-group col-7">
+                    <label>Класс автомобиля</label>
+                    <select (change)="updateClazz($event)" formControlName="clazz">
+                      <option [ngValue]="undefined">Выберите</option>
+                      <option *ngFor="let clazz of clazzes">{{clazz}}</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-7">
+                    <label>Услуга</label>
+                    <select (change)="updatePrice($event)" formControlName="service">
+                      <option [ngValue]="undefined">Выберите</option>
+                      <option *ngFor="let ser of currentServices">{{ser.name}}</option>
+                    </select>
+                  </div>
+                  <h1>Итого:</h1>
+                  <p id="price__service">{{price}} руб</p>
+                  <div class="checkbox">
+                    <input type="checkbox" id="checkbox1" formControlName="agree">
+                    <label for="checkbox1"> Я согласен с Политикой
+                      конфиденциальности и правилами пользования online-записью, ознакомлен, что конечная сумма может
+                      варьироваться в зависимости от пожеланий в соответствии с прайс-листом SWOOSH.</label>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="title__note">
+                    <select (change)="updateCarWash($event)" class="title__note-button">
+                      <option [ngValue]="undefined">Автомойка</option>
+                      <option class="order-info" [ngValue]="carwash"
+                              *ngFor="let carwash of carWashes">{{carwash.location}}</option>
+                    </select>
+                    <img src="../../../assets/pictures/modal/logotip.png">
+                  </div>
+                  <div class="map">
+                    <div style="position:relative;overflow:hidden;"><a
+                      href="https://yandex.ru/maps/47/nizhny-novgorod/?utm_medium=mapframe&utm_source=maps"
+                      style="color:#eee;font-size:12px;position:absolute;top:0px;">Нижний Новгород</a>
+                      <a
+                        href="https://yandex.ru/maps/47/nizhny-novgorod/house/ulitsa_belinskogo_32/YEoYfw5lTkIEQFtsfX9wcXRmZg==/?ll=43.995773%2C56.310852&utm_medium=mapframe&utm_source=maps&z=17.09"
+                        style="color:#eee;font-size:12px;position:absolute;top:14px;">Улица Белинского, 32 —
+                        Яндекс Карты</a>
+                      <iframe src="https://yandex.ru/map-widget/v1/-/CCUB7YvElB" width="373" height="193"
+                              frameborder="1"
+                              allowfullscreen="true" style="position:relative;"></iframe>
+                    </div>
+                  </div>
+                  <button type="button" class="button__note"
+                          data-bs-dismiss="modal"
+                          (click)="saveRecord()"
+                          [disabled]="formRecord.invalid || formRecord.get('clazz')?.value === 'Выберите' || formRecord.get('service')?.value === 'Выберите'">
+                    Записаться
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

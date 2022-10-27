@@ -1,0 +1,6 @@
+INSERT INTO public.users (id, email, name, password, role, status) VALUES (1, 'admin@mail.ru', 'Admin', '$2a$12$sUzUs.5FC7MA2LiBZ/g.zu.1RIiQvzxsWGDhf2tjfPMVJ5tk1u3fi', 'ADMIN', 'ACTIVE');
+INSERT INTO public.users (id, email, name, password, role, status) VALUES (2, 'customer@mail.ru', 'Customer', '$2a$12$EKaWdQUj.1m1DFudmsimAOGLfS1f4uVL.iGTfY4ztQfjbSXQB4CcK', 'CUSTOMER', 'ACTIVE');
+INSERT INTO public.users (id, email, name, password, role, status) VALUES (6, 'lilpad@bk.ru', 'Петя', '$2a$12$tFh8TrNQm5oSunTPQSR4GuY9vpFCODmmOO9dhZKydgdsHdj8EgqSu', 'CUSTOMER', 'ACTIVE');
+INSERT INTO public.users (id, email, name, password, role, status) VALUES (3, 'employee@mail.ru', 'Employee', '$2a$12$XI7HennTEQg4We/Uy4zLKux0KRLMsyIrVXplongKPN7iypQbi21vG', 'EMPLOYEE', 'ACTIVE');
+INSERT INTO public.users (id, email, name, password, role, status) VALUES (5, 'ivan@bk.ru', 'Иван', '$2a$12$gFkROho2pekL0UH7kctJtOfZteAC/hf191szI60c1TbYlxmq4nFwK', 'EMPLOYEE', 'ACTIVE');
+INSERT INTO public.users (id, email, name, password, role, status) VALUES (7, 'lilgud@mail.ru', 'Илья', '$2a$12$b7B8lbetQLkBR3n3HKSgp.N0O3iRFwWSinAD/VdO90rPeQcwBG8WK', 'CUSTOMER', 'ACTIVE');

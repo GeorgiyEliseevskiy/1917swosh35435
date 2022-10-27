@@ -1,0 +1,193 @@
+.navbar {
+  position: absolute;
+  top: 0;
+  z-index: 1000;
+  width: 100vw;
+  padding: 67px 0;
+}
+
+.logo {
+  white-space: nowrap;
+  font-size: 41px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.logo__link {
+  color: #fff;
+  font-weight: 900;
+  text-decoration: none;
+  height: 38px;
+}
+.logo__link span {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  width: 100px;
+}
+
+.top-menu {
+  margin: 0;
+  text-align: right;
+  padding-top: 26px;
+}
+.top-menu__item {
+  padding: 0;
+  list-style-type: none;
+  display: inline-block;
+  margin: 0 40px;
+}
+.top-menu__link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 26px 0;
+  cursor: pointer;
+}
+.top-menu__link span{
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.button__account {
+  background-color: var(--accent);
+  color: var(--dark);
+  font-weight: 700;
+  border-radius: 5px;
+  box-shadow: 0 4px 25px var(--accent);
+  border: 0;
+  width: 178px;
+  height: 39px;
+  margin-top: 26px;
+  margin-left: 43px;
+  white-space: nowrap;
+}
+.button__account span {
+  position: relative;
+  right: 40px;
+}
+
+.modal  {
+  background:rgba(0,0,0,.4);
+  backdrop-filter: blur(7px);
+}
+
+#login {
+  width: 516px;
+  height: 414px;
+  padding: 10px;
+  margin-right: auto;
+  margin-left: auto;
+}
+#background__login {
+  background-image: url("../../../../assets/pictures/modal/Background2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 516px;
+  height: 414px;
+  background-color:rgba(0,0,0,.9);
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 4px 139px var(--accent);
+  border: 0;
+}
+.modal-title {
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  margin-top: 70px;
+  font-size: 41px;
+  color: var(--accent);
+}
+.button__modal {
+  width: 150px;
+  height: 47px;
+  margin: 23px 184px;
+  background-color: var(--accent);
+  box-shadow: 0px 4px 25px  var(--accent);
+  border-radius: 44px;
+  border: 0;
+  color: var(--dark);
+  font-weight: 700;
+  font-size: 20px;
+}
+#text__login {
+  text-align: center;
+  width: 100%;
+  margin-top: -10px;
+}
+#text__login span {
+  font-weight: 700;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+
+
+.form-group {
+  width: 375px;
+  margin-left: 72px;
+}
+.form-group label {
+  margin-top: 12px;
+}
+
+#registration {
+  width: 516px;
+  min-height: 507px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 200px;
+}
+#background__registration {
+  background-image: url("../../../../assets/pictures/modal/Background2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 516px;
+  min-height: 507px;
+  background-color:rgba(0,0,0,.9);
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 4px 139px var(--accent);
+  border: 0;
+}
+
+#code {
+  width: 516px;
+  height: 318px;
+  padding: 10px;
+  margin-right: auto;
+  margin-left: auto;
+}
+#background__code{
+  background-image: url("../../../../assets/pictures/modal/Background2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 516px;
+  height: 318px;
+  background-color:rgba(0,0,0,.9);
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 4px 139px var(--accent);
+  border: 0;
+}
+#button__code {
+  width: 303px;
+  height: 47px;
+  background: var(--accent);
+  box-shadow: 0px 4px 25px var(--accent);
+  border-radius: 44px;
+  border: 0;
+  color: var(--dark);
+  font-weight: 700;
+  font-size: 23px;
+  margin-left: 106px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+

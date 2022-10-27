@@ -1,0 +1,114 @@
+<section id="personal-account__client">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <a [routerLink]="['']" (click)="logout()" class="button__exit">Выход</a>
+        <div class="personal__information">
+
+        </div>
+        <div class="client__notes">
+          <h1>История посещений</h1>
+          <div class="rectangle__client">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="review-tab"><h3>Дата</h3></div>
+              </div>
+              <div class="col-md-3">
+                <div class="review-tab"><h3>Услуга</h3></div>
+              </div>
+              <div class="col-md-3">
+                <div class="review-tab"><h3>Цена</h3></div>
+              </div>
+              <div class="col-md-3">
+
+              </div>
+              <div class="review-scroll">
+                <div class="review-list">
+                  <div class="row" *ngFor="let order of this.orders">
+                    <div class="col-md-3">
+                      <div class="order-date">{{order.date}}</div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="order-service">{{order.service.name}}</div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="order-price">{{order.price}}</div>
+                    </div>
+                    <div class="col-md-3">
+                      <div *ngIf="!order.status" class="order-review-work">В работе</div>
+                      <button (click)="updateCurrentOrder(order.id)" type="button"
+                              *ngIf="order.status && order.grade == 0"
+                              class="button__order-review" data-bs-toggle="modal" data-bs-target="#windowReview"><span>Оценить</span>
+                      </button>
+                      <div *ngIf="order.status && order.grade > 0" class="order-review-complete">Готово</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="view__process">
+          <h1>Наблюдать за процессом</h1>
+          <div class="video">
+                       <iframe width="632" height="364" src="https://www.youtube.com/embed/5g41cpe2d7M"
+                               title="YouTube video player"
+                               frameborder="0"
+                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                               allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM REVIEW -->
+  <div class="modal fade" id="windowReview" tabindex="-1" aria-labelledby="windowCode" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" id="code">
+      <div class="modal-content" id="background__review">
+        <h5 class="modal-title">Отзыв</h5>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="title__review">
+                  <img src="../../../assets/pictures/modal/logotip.png">
+                  <div class="text__review">
+                    <h3>{{currentOrder?.carWash?.name}}</h3>
+                    <button class="rectangle__address">{{currentOrder?.carWash?.location}}</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <form [formGroup]="formReview">
+                  <div class="form-group col-12">
+                    <h5>Поделитесь своими впечатлениями об этом месте</h5>
+                    <p><textarea formControlName="text"></textarea></p>
+                    <div class="rating-area">
+                      <input type="radio" id="star-5" name="rating" value="5" (click)="getGrade(5)">
+                      <label for="star-5" title="Оценка «5»"></label>
+                      <input type="radio" id="star-4" name="rating" value="4" (click)="getGrade(4)">
+                      <label for="star-4" title="Оценка «4»"></label>
+                      <input type="radio" id="star-3" name="rating" value="3" (click)="getGrade(3)">
+                      <label for="star-3" title="Оценка «3»"></label>
+                      <input type="radio" id="star-2" name="rating" value="2" (click)="getGrade(2)">
+                      <label for="star-2" title="Оценка «2»"></label>
+                      <input checked type="radio" id="star-1" name="rating" value="1" (click)="getGrade(1)">
+                      <label for="star-1" title="Оценка «1»"></label>
+                    </div>
+                  </div>
+                  <button type="submit" id="button__save" data-bs-target="#windowReview" data-bs-dismiss="modal"
+                          (click)="saveReview()">
+                    Сохранить
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

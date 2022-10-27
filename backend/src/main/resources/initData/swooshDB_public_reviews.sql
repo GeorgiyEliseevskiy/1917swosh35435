@@ -1,0 +1,1 @@
+INSERT INTO public.reviews (review_id, review_text, car_wash_id, user_id) VALUES (1, 'норм', 2, 7);

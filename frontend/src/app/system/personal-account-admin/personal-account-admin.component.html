@@ -1,0 +1,583 @@
+<section id="personal-account__admin">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 row-left">
+        <div class="personal-account__administration">
+          <h1>Личный кабинет администратора</h1>
+        </div>
+        <button type="button" class="button__add-wash" (click)="clickCarWash('carwash', '_common')"><span><img
+          src="../../../assets/pictures/paa/plus.png" alt="">Управление</span>
+        </button>
+        <div class="car-wash__wrap">
+          <div class="car-wash">
+            <div class="btn-group dropend" *ngFor="let carwash of carWashes">
+              <button type="button" class="button__wash dropdown-toggle" data-bs-toggle="dropdown"
+                      aria-expanded="false"><img src="../../../assets/pictures/paa/vector.png" alt="" class="rightpic">
+                {{carwash.location}}
+              </button>
+              <ul class="dropdown-menu">
+                <li type="button" class="dropdown-item" (click)="clickCarWash(carwash.location, '_employee')">Статистика
+                  по
+                  сотрудникам
+                </li>
+                <li type="button" class="dropdown-item" (click)="clickCarWash(carwash.location, '_client')">Статистика
+                  по
+                  клиентам
+                </li>
+                <li type="button" class="dropdown-item" (click)="clickCarWash(carwash.location, '_orders')">Управление
+                  заказами
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <a [routerLink]="['']" (click)="logout()" class="button__exit">Выход</a>
+        <div class="rectangle__admin">
+          <div class="logo"><img src="../../../assets/pictures/paa/logo.png" alt=""></div>
+          <div [ngSwitch]="currentCarWash">
+            <div>
+
+              <!-- Статистика по сотрудникам -->
+              <div *ngSwitchCase="currentCarWash.substring(0, currentCarWash.indexOf('_')) + '_employee'">
+                <div class="stat">
+                  <h1>Статистика по сотрудникам</h1>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="empSelect">
+                        <p>Выбор сотрудника</p>
+                        <div class="formSelect">
+                          <select (change)="getStatsEmployee(currentCarWash, $event)" class="empSelect form-select-sm"
+                                  aria-label=".form-select-sm example">
+                            <option [ngValue]="undefined">Выберите</option>
+                            <option *ngFor="let empl of currentEmployees">
+                              {{empl.name}}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="perSelect">
+                        <p>Выбор периода</p>
+                        <input class="datePicker_min" type="date" min="2022-04-01">
+                        <input class="datePicker_max" type="date" min="2022-04-01">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="ellipse">
+                        <img src="../../../assets/pictures/paa/lock.png" alt="">
+                        <h2>{{numberOrders}}</h2>
+                      </div>
+                      <div class="caption">Количество выполненных заказов</div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="ellipse">
+                        <img src="../../../assets/pictures/paa/doge.png" alt="">
+                        <h2>{{avgGrade}}</h2>
+                      </div>
+                      <div class="caption">Средняя оценка качества</div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="ellipse">
+                        <img src="../../../assets/pictures/paa/diag.png" alt="">
+                        <h2>{{returnAbility}}%</h2>
+                      </div>
+                      <div class="caption">Возвращаемость</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Статистика по клиентам -->
+              <div *ngSwitchCase="currentCarWash.substring(0, currentCarWash.indexOf('_')) + '_client'">
+                <div class="stat">
+                  <div class="row">
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-6">
+                      <div><h1>Статистика по клиентам</h1></div>
+                    </div>
+                    <div class="col-md-4">
+                      <!-- <div class="search-client"><button type="button" class="button__datePicker">Поиск</button></div> -->
+                      <div class="search-client"><input type="text" class="button__datePicker" placeholder="Поиск">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <div class="stat-client"><h3>Имя</h3></div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="stat-client"><h3>Номер</h3></div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="stat-client"><h3>Кол-во посещений</h3></div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="stat-client"><h3>Средний чек</h3></div>
+                    </div>
+                  </div>
+                  <div class="client-list__scroll">
+                    <div class="client-list" *ngFor="let user of currentUsers">
+                      <div class="row">
+                        <div class="col-md-3">
+                          <div class="client-info">{{user.name}}</div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="client-info">{{user.phone}}</div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="client-info">{{user.numberOfVisits}}</div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="client-info-end">{{user.averageCheck}}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Управление заказами -->
+              <div *ngSwitchCase="currentCarWash.substring(0, currentCarWash.indexOf('_')) + '_orders'">
+                <div class="stat">
+                  <div class="row">
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-8">
+                      <div><h1>Управление заказами</h1></div>
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="stat-client"><h3>Клиент</h3></div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="stat-client"><h3>Номер клиента</h3></div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="stat-client"><h3>Услуга</h3></div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="stat-client"><h3>Сотрудник</h3></div>
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+                  </div>
+                  <div class="client-list__scroll">
+                    <div class="order-list" *ngFor="let order of currentOrders">
+                      <div class="row">
+                        <div class="col-md-2">
+                          <div class="order-info">{{order.user.name}}</div>
+                        </div>
+                        <div class="col-md-2">
+                          <div class="order-info">{{order.user.phone}}</div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="order-info">{{order.service.name}}</div>
+                        </div>
+                        <div class="col-md-2">
+                          <select class="employee-order-end" (change)="updateEmployeeOrderMap(order, $event)"
+                                  *ngIf="order.employee.name == ''">
+                            <option class="order-info" [ngValue]="undefined">Выберите</option>
+                            <option class="order-info" *ngFor="let emp of currentEmployees">{{emp.name}}</option>
+                          </select>
+                          <div class="assigned-employee" *ngIf="order.employee.name != ''">{{order.employee.name}}</div>
+                        </div>
+                        <div class="col-md-2">
+                          <button (click)="updateOrderEmployee(order)" type="button" class="button__order-appoint"
+                                  *ngIf="order.employee.name == ''"><span>Назначить</span></button>
+                          <button (click)="updateOrderStatus(order)" type="button" class="button__order-complited"
+                                  *ngIf="order.employee.name != '' && !order.status"><span>Завершить</span></button>
+                          <div class="order-complited" *ngIf="order.employee.name != '' && order.status">Завершен</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Добавление автомойки (общие сведения) -->
+            <div *ngSwitchCase="currentCarWash.substring(0, currentCarWash.indexOf('_')) + '_common'">
+              <div class="window__add-wash">
+                <div class="header__add-wash">
+                  <h1>Управление</h1>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="button__gen-info__wrap">
+                        <button type="button" class="button__gen-info-active"
+                                (click)="clickCarWash('carwash', '_common')">Добавить автомойку
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="button__service__wrap">
+                        <button type="button" class="button__service" (click)="clickCarWash('carwash', '_services')">
+                          Услуги
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col-md-5">
+                      <div class="button__workers__wrap">
+                        <button type="button" class="button__workers" (click)="clickCarWash('carwash', '_empl')">
+                          Сотрудники
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="gen-info" [formGroup]="formCarWash">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="add-wash__form">
+                        <div class="name__wrap">
+                          <div class="name">Название</div>
+                          <input type="text" class="form-control" placeholder="Название" aria-label="Имя пользователя"
+                                 aria-describedby="addon-wrapping" formControlName="name">
+                        </div>
+                        <div class="address__wrap">
+                          <div class="address">Адрес</div>
+                          <input type="text" class="form-control" placeholder="Адрес" aria-label="Имя пользователя"
+                                 aria-describedby="addon-wrapping" formControlName="address">
+                        </div>
+                        <div class="telephone__wrap">
+                          <div class="telephone">Телефон</div>
+                          <input type="tel" prefix="+7" mask=" (000) 000-0000" class="form-control"
+                                 aria-label="Имя пользователя"
+                                 aria-describedby="addon-wrapping" formControlName="phone">
+                        </div>
+                        <div class="add-photo">
+                          <input id="file-input" type="file" name="file" multiple>
+                          <label for="file-input">Добавить фотографии</label>
+                          <div></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="add-logo">
+                        <input id="file-input1" type="file" name="file" multiple>
+                        <label for="file-input1"><img src="../../../assets/pictures/paa/add_logo.png" alt=""></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="button__save__gen-info">
+                <button type="button" class="button__save" (click)="saveCarWash()"
+                        [disabled]="formCarWash.invalid">Сохранить
+                </button>
+              </div>
+            </div>
+
+            <!-- Добавление автомойки (услуги) -->
+            <div *ngSwitchCase="currentCarWash.substring(0, currentCarWash.indexOf('_')) + '_services'">
+              <div class="window__add-wash">
+                <div class="header__add-wash">
+                  <h1>Управление</h1>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="button__gen-info__wrap">
+                        <button type="button" class="button__gen-info" (click)="clickCarWash('carwash', '_common')">
+                          Добавить автомойку
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="button__service__wrap">
+                        <button type="button" class="button__service-active"
+                                (click)="clickCarWash('carwash', '_services')">Услуги
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col-md-5">
+                      <div class="button__workers__wrap">
+                        <button type="button" class="button__workers" (click)="clickCarWash('carwash', '_empl')">
+                          Сотрудники
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="new-service">
+                  <a class="button__new-service" data-bs-toggle="modal" data-bs-target="#windowAddService"><img
+                    src="../../../assets/pictures/paa/plus-min.png" alt="" class="new-service-pic">Новая услуга</a>
+                </div>
+                <div class="add-service__header">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="add-service">Наименование</div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="add-service">Адрес автомойки</div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="add-service">Стоимость</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="service-info__scroll">
+                  <div class="new-service-info" *ngFor="let serv of serviceAdd">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="service" id="service-name">{{serv.name}}
+                          <!-- <button class="change" data-bs-toggle="modal" data-bs-target="#windowChangeService"><img src="../../../assets/pictures/paa/change.png" width="20px" height="20px"></button> -->
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="service" id="service-loc">{{serv.carWashLocation}}
+                          <!-- <button class="change" data-bs-toggle="modal" data-bs-target="#windowChangeService"><img src="../../../assets/pictures/paa/change.png" width="20px" height="20px"></button> -->
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="service-end" id="service-price">{{serv.price}}
+                          <!-- <button class="change" data-bs-toggle="modal" data-bs-target="#windowChangeService"><img src="../../../assets/pictures/paa/change.png" width="20px" height="20px"></button> -->
+                        </div>
+                      </div>
+                      <div class="col-md-1">
+                        <button (click)="changeServiceId(serv.id)" class="change" data-bs-toggle="modal" data-bs-target="#windowChangeService"><img src="../../../assets/pictures/paa/change.png" width="35px" height="35px"></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Добавление автомойки (сотрудники) -->
+            <div *ngSwitchCase="currentCarWash.substring(0, currentCarWash.indexOf('_')) + '_empl'">
+              <div class="window__add-wash">
+                <div class="header__add-wash">
+                  <h1>Управление</h1>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="button__gen-info__wrap">
+                        <button type="button" class="button__gen-info" (click)="clickCarWash('carwash', '_common')">
+                          Добавить автомойку
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="button__service__wrap">
+                        <button type="button" class="button__service" (click)="clickCarWash('carwash', '_services')">
+                          Услуги
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col-md-5">
+                      <div class="button__workers__wrap">
+                        <button type="button" class="button__workers-active" (click)="clickCarWash('carwash', '_empl')">
+                          Сотрудники
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="new-emp">
+                  <a class="button__new-emp" data-bs-toggle="modal" data-bs-target="#windowAddEmp"><img
+                    src="../../../assets/pictures/paa/plus-min.png" alt="" class="new-emp-pic">Новый сотрудник</a>
+                </div>
+                <div class="add-emp__header">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="add-emp">ФИО</div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="add-emp">Email</div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="add-emp">Номер</div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="add-emp">Адрес автомойки</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="emp-info__scroll">
+                  <div class="new-emp-info" *ngFor="let emp of employeeAdd">
+                    <div class="row">
+                      <div class="col-md-2">
+                        <div class="employee">{{emp.name}}</div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="employee">{{emp.phone}}</div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="employee">{{emp.email}}</div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="employee-service-end">{{emp.carWashLocation}}</div>
+                      </div>
+                      <div class="col-md-1">
+                        <button (click)="changeEmployeeId(emp.id)" class="change" data-bs-toggle="modal" data-bs-target="#windowChangeEmp"><img src="../../../assets/pictures/paa/change.png" width="35px" height="35px"></button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM ADD-SERVICE -->
+  <div class="modal fade" id="windowAddService" tabindex="-1" aria-labelledby="windowAddService" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg AddService">
+      <div class="modal-content background__addService">
+        <h5 class="modal-title">Новая услуга</h5>
+        <form [formGroup]="formServ">
+          <div class="form-group col-7">
+            <label>Наименование</label>
+            <input type="name" class="input__modal" formControlName="name"/>
+          </div>
+          <div class="form-group col-7">
+            <label>Стоимость</label>
+            <input type="number" class="input__modal" formControlName="price"/>
+          </div>
+          <div class="form-group col-7">
+            <label>Адрес автомойки</label>
+            <select name="class" (change)="updateLocationService($event)" formControlName="carwash">
+              <option [ngValue]="undefined">Выберите</option>
+              <option *ngFor="let carwash of carWashes">
+                {{carwash.location}}
+              </option>
+            </select>
+          </div>
+          <button type="button" class="button__modal" aria-label="Закрыть" id="SaveService" (click)="saveService()"
+                  [disabled]="formServ.invalid || formServ.get('carwash')?.value === 'Выберите'"
+                  data-bs-dismiss="modal">Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+    <!-- FORM CHANGE-SERVICE -->
+    <div class="modal fade" id="windowChangeService" tabindex="-1" aria-labelledby="windowchangeService" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg AddService">
+        <div class="modal-content background__addService">
+          <h5 class="modal-title">Изменить услугу</h5>
+          <form [formGroup]="formChangeServ">
+            <div class="form-group col-7">
+              <label>Наименование</label>
+              <input type="name" class="input__modal" formControlName="name"/>
+            </div>
+            <div class="form-group col-7">
+              <label>Стоимость</label>
+              <input type="number" class="input__modal" formControlName="price"/>
+            </div>
+            <div class="form-group col-7">
+              <label>Адрес автомойки</label>
+              <select name="class" (change)="updateLocationService($event)" formControlName="carwash">
+                <option [ngValue]="undefined">Выберите</option>
+                <option *ngFor="let carwash of carWashes">
+                  {{carwash.location}}
+                </option>
+              </select>
+            </div>
+            <button type="button" class="SaveChange" aria-label="Закрыть" (click)="updateService()"
+                    [disabled]="formChangeServ.invalid || formChangeServ.get('carwash')?.value === 'Выберите'"
+                    data-bs-dismiss="modal">Сохранить
+            </button>
+            <button (click)="deleteService()" type="button" class="Delete" aria-label="Закрыть" data-bs-dismiss="modal">Удалить
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  <!-- FORM ADD-EMPLOYEE -->
+  <div class="modal fade" id="windowAddEmp" tabindex="-1" aria-labelledby="windowAddEmp" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg AddEmp">
+      <div class="modal-content background__addEmp">
+        <h5 class="modal-title">Новый сотрудник</h5>
+        <form [formGroup]="formEmpl">
+          <div class="form-group col-7">
+            <label>ФИО</label>
+            <input type="text" class="input__modal" formControlName="name"/>
+          </div>
+          <div class="form-group col-7">
+            <label>Номер</label>
+            <input type="tel" prefix="+7" mask=" (000) 000-0000" class="input__modal" formControlName="phone">
+          </div>
+          <div class="form-group col-7">
+            <label>Email</label>
+            <input type="text" class="input__modal" formControlName="email">
+          </div>
+          <div class="form-group col-7">
+            <label>Пароль</label>
+            <input type="password" class="input__modal" formControlName="password"/>
+          </div>
+          <div class="form-group col-7">
+            <label>Адрес автомойки</label>
+            <select name="class" (change)="updateLocationEmployee($event)" formControlName="carwash">
+              <option [ngValue]="undefined">Выберите</option>
+              <option *ngFor="let carwash of carWashes">
+                {{carwash.location}}
+              </option>
+            </select>
+          </div>
+          <button type="button" class="button__modal" (click)="saveEmployee()"
+                  [disabled]="formEmpl.invalid || formEmpl.get('carwash')?.value === 'Выберите'"
+                  data-bs-dismiss="modal">Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM CHANGE-EMPLOYEE -->
+  <div class="modal fade" id="windowChangeEmp" tabindex="-1" aria-labelledby="windowChangeEmp" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg AddEmp">
+      <div class="modal-content background__addEmp">
+        <h5 class="modal-title">Изменить сотрудника</h5>
+        <form [formGroup]="formChangeEmpl">
+          <div class="form-group col-7">
+            <label>ФИО</label>
+            <input type="text" class="input__modal" formControlName="name"/>
+          </div>
+          <div class="form-group col-7">
+            <label>Номер</label>
+            <input type="tel" prefix="+7" mask=" (000) 000-0000" class="input__modal" formControlName="phone">
+          </div>
+          <div class="form-group col-7">
+            <label>Email</label>
+            <input type="text" class="input__modal" formControlName="email">
+          </div>
+          <div class="form-group col-7">
+            <label>Пароль</label>
+            <input type="password" class="input__modal" formControlName="password"/>
+          </div>
+          <div class="form-group col-7">
+            <label>Адрес автомойки</label>
+            <select name="class" (change)="updateLocationEmployee($event)" formControlName="carwash">
+              <option [ngValue]="undefined">Выберите</option>
+              <option *ngFor="let carwash of carWashes">
+                {{carwash.location}}
+              </option>
+            </select>
+          </div>
+          <button type="button" class="SaveChange" (click)="updateEmployee()"
+                  [disabled]="formChangeEmpl.invalid || formChangeEmpl.get('carwash')?.value === 'Выберите'"
+                  data-bs-dismiss="modal">Сохранить
+          </button>
+          <button (click)="deleteEmployee()" type="button" class="Delete" aria-label="Закрыть" data-bs-dismiss="modal">Удалить
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</section>

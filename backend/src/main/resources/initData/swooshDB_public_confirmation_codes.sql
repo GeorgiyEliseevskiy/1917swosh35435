@@ -1,0 +1,1 @@
+INSERT INTO public.confirmation_codes (confirmation_code_id, code, email) VALUES (3, 'PRAID57DH1', 'lilgud@mail.ru');

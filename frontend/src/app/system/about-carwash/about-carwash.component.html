@@ -1,0 +1,93 @@
+<section id="about-carwash">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+          <img src="../../../assets/pictures/modal/logotip.png" id="logo">
+        <div class="head">
+          <p><span>Автомойка Мир</span>+7 856 343-34-23</p>
+        </div>
+
+        <div class="tabs">
+
+          <input type="radio" name="tab-btn" id="tab-btn-1" value="" class="b-radio" checked>
+          <label for="tab-btn-1">Отзывы</label>
+          <input type="radio" name="tab-btn" id="tab-btn-2" value="" class="b-radio">
+          <label for="tab-btn-2">Фотографии</label>
+          <input type="radio" name="tab-btn" id="tab-btn-3" value="" class="b-radio">
+          <label for="tab-btn-3">Прайс</label>
+
+          <div id="content-1">
+            <div class="rectangle" *ngFor="let order of orders">
+              <div class="general">
+                <div class="ellipse"></div>
+                <div class="about__client">
+                  <p><span>{{order.user.name}}</span> Сегодня</p>
+                </div>
+                <button class="button__clientreview">1 Отзыв</button>
+              </div>
+              <div class="textclient__review">
+                <p>{{order.text}}</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="content-2">
+            <div class="photo__row1">
+              <img src="../../../assets/pictures/about-carwash/photo2.png">
+              <img src="../../../assets/pictures/about-carwash/photo1.png">
+            </div>
+            <div class="photo__row2">
+              <img src="../../../assets/pictures/about-carwash/photo3.png">
+              <img src="../../../assets/pictures/about-carwash/photo4.png">
+              <img src="../../../assets/pictures/about-carwash/photo5.png">
+            </div>
+          </div>
+
+          <div id="content-3">
+            <div class="price" *ngFor="let ser of services">
+              <div class="about__carwash">
+              <h3>{{ser.name}}</h3>
+              <p>Описание</p>
+              </div>
+              <div class="price__carwash">
+              <p class="price__text"><span>{{ser.price}}</span> руб</p>
+              </div>
+              <hr>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="info">
+          <img src="../../../assets/pictures/home/space.png">
+          <p>г. Нижний Новгород <br> Белинского 32 а, круглосуточно</p>
+          <p id="phone">+7 908 165-44-65</p>
+        </div>
+        <div class="map">
+          <!-- Вариант 3 (гугл с меткой) -->
+        <!--   <iframe src="https://www.google.com/maps/d/embed?mid=1NkPnbRvUKb1vcsLYbVa44PxX0D2c_c7S&ehbc=2E312F" width="615" height="318"></iframe> -->
+          <!-- Вариант 2 (яндекс с меткой) -->
+          <div style="position:relative;overflow:hidden;"><a
+            href="https://yandex.ru/maps/47/nizhny-novgorod/?utm_medium=mapframe&utm_source=maps"
+            style="color:#eee;font-size:12px;position:absolute;top:0px;">Нижний Новгород</a><a
+            href="https://yandex.ru/maps/47/nizhny-novgorod/house/ulitsa_belinskogo_32/YEoYfw5lTkIEQFtsfX9wcXRmZg==/?ll=43.995773%2C56.310852&utm_medium=mapframe&utm_source=maps&z=17.09"
+            style="color:#eee;font-size:12px;position:absolute;top:14px;">Улица Белинского, 32 — Яндекс Карты</a>
+            <iframe src="https://yandex.ru/map-widget/v1/-/CCUB7YvElB" width="615" height="318" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
+          </div>
+        <!--   Вариант 1
+           <div style="position:relative;overflow:hidden;"><a
+            href="https://yandex.ru/maps/47/nizhny-novgorod/?utm_medium=mapframe&utm_source=maps"
+            style="color:#eee;font-size:12px;position:absolute;top:0px;">Нижний Новгород</a><a
+            href="https://yandex.ru/maps/47/nizhny-novgorod/?ll=44.005986%2C56.326887&utm_medium=mapframe&utm_source=maps&z=11"
+            style="color:#eee;font-size:12px;position:absolute;top:14px;"></a>
+            <iframe src="https://yandex.ru/map-widget/v1/-/CCQtRZwQkC" width="615" height="318" frameborder="1"
+                    allowfullscreen="true" style="position:relative;border-radius: 5px;"></iframe>
+          </div> -->
+        </div>
+        <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#windowNote">Записаться ON-line
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
